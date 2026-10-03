@@ -1,3 +1,24 @@
+turnkey-sysinfo (1.1.0+keel2) trixie; urgency=medium
+
+  * The login message says "Welcome to keel-web1, Keel Linux 19.0 (Debian
+    13/Trixie)". contrib/motd took its welcome line from
+    sysversion.fmt_sysversion, which names TurnKey GNU/Linux and which the
+    turnkey-version fork leaves alone; the line is now composed here, in
+    libsysinfo/welcome.py: the release from /etc/keel_version, with
+    /etc/turnkey_version as the fallback (common, decision 0014; an app name
+    with hyphens is parsed from the right), the base distribution from
+    lsb_release as before, and the same fallbacks as upstream when one or
+    both are missing. The hostname is printed as the machine has it:
+    upstream's str.capitalize() made keel-web1 "Keel-web1".
+  * debian/control describes a Keel Linux server. The copyright headers,
+    the package and command names, and the TKLBAM block of turnkey-sysinfo
+    (common's motd drop-in leaves it out; whether an appliance ships TKLBAM
+    is handbook#6) are untouched.
+  * tests/test_welcome.py, run by pybuild at build time (python3-pytest in
+    Build-Depends), so the package check exercises it.
+
+ -- Keel Linux maintainers <admin@keellinux.org>  Fri, 03 Oct 2026 12:00:00 +0000
+
 turnkey-sysinfo (1.1.0+keel1) trixie; urgency=medium
 
   * Build for Keel Linux, Debian 13.

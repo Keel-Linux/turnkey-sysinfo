@@ -4,19 +4,20 @@ import socket
 import subprocess
 from sys import stdin
 
-from sysversion import fmt_sysversion
+from sysversion import fmt_base_distribution
+
+from libsysinfo.welcome import fmt_sysversion, fmt_welcome, read_version, release_of
 
 ENCODING = stdin.encoding  # most likely 'utf-8'
 
 
-def fmt_welcome() -> str:
-    welcome = "Welcome to {}".format(socket.gethostname().capitalize())
-
-    sysversion = fmt_sysversion()
-    if sysversion:
-        welcome += ", " + sysversion
-
-    return welcome
+def welcome_line() -> str:
+    # The hostname as the machine has it: upstream's str.capitalize() made
+    # keel-web1 "Keel-web1". The release from /etc/keel_version, or from
+    # /etc/turnkey_version; the base distribution from lsb_release as before.
+    release = release_of(read_version())
+    return fmt_welcome(socket.gethostname(),
+                       fmt_sysversion(release, fmt_base_distribution()))
 
 
 def indent(level, s) -> str:
@@ -24,7 +25,7 @@ def indent(level, s) -> str:
 
 
 def main():
-    print(fmt_welcome())
+    print(welcome_line())
 
     turnkey_sysinfo = subprocess.run(["turnkey-sysinfo"],
                                      capture_output=True, text=True).stdout

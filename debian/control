@@ -7,6 +7,7 @@ Build-Depends:
  python3-all (>= 3.11~),
  pybuild-plugin-pyproject,
  python3-setuptools,
+ python3-pytest,
  dh-python,
 Standards-Version: 4.0.0
 X-Python-Version: >= 3.11
@@ -18,9 +19,9 @@ Depends:
  ${python3:Depends},
  turnkey-netinfo,
  turnkey-version,
-Description: Displays TurnKey GNU/Linux system information
+Description: Displays Keel Linux system information
  The turnkey-sysinfo and turnkey-detect-virt executables
- provide info about a TurnKey GNU/Linux server
+ provide info about a Keel Linux server
  .
  turnkey-sysinfo displays info such as:
     - date
@@ -32,7 +33,7 @@ Description: Displays TurnKey GNU/Linux system information
     - TKLBAM status (inc backup ID and when last run)
  .
  turnkey-detect-virt displays information about the
- underlying virtualization of a Turnkey guest OS as
+ underlying virtualization of a Keel guest OS as
  relevant
  .
  Additional package components:
