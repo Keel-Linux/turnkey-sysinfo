@@ -1,7 +1,8 @@
 Source: turnkey-sysinfo
 Section: misc
 Priority: optional
-Maintainer: Stefan Davis <stefan@turnkeylinux.org>
+Maintainer: KeelLinux maintainers <admin@keellinux.org>
+Uploaders: Marcos Mendez <mendez.foto@gmail.com>
 Build-Depends:
  debhelper (>= 10),
  python3-all (>= 3.11~),
